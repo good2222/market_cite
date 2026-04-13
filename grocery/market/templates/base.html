@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EgorMarket{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="{% url 'product_list' %}" class="navbar-brand">🛒 EgorMarket</a>
+        <ul class="navbar-links">
+            <li><a href="{% url 'product_list' %}">Товари</a></li>
+            <li>
+                <a href="{% url 'cart' %}" class="cart-link">
+                    🛒 Кошик
+                    {% if request.session.cart %}
+                    <span class="cart-badge">{{ request.session.cart|length }}</span>
+                    {% endif %}
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="main-content">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>© 2026 EgorMarket. Свіжі продукти з доставкою.</p>
+</footer>
+
+<script>
+function addToCart(productId) {
+    fetch(`/cart/add/${productId}/`, {
+        method: 'POST',
+        headers: {'X-CSRFToken': getCookie('csrftoken'), 'Content-Type': 'application/json'},
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            const btn = document.querySelector(`[data-id="${productId}"]`);
+            if (btn) {
+                btn.textContent = '✓ Додано';
+                btn.classList.add('btn--added');
+                setTimeout(() => {
+                    btn.textContent = '+ До кошика';
+                    btn.classList.remove('btn--added');
+                }, 1500);
+            }
+            const badge = document.querySelector('.cart-badge');
+            if (badge) badge.textContent = data.count;
+            else {
+                const link = document.querySelector('.cart-link');
+                if (link) link.insertAdjacentHTML('beforeend', `<span class="cart-badge">${data.count}</span>`);
+            }
+        }
+    });
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        for (const cookie of document.cookie.split(';')) {
+            const c = cookie.trim();
+            if (c.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(c.slice(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+</body>
+</html>

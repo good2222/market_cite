@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Замовлення оформлено — EgorMarket{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="success-wrap">
+        <div class="success-icon">✓</div>
+        <h1 class="success-title">Замовлення #{{ order.pk }} прийнято!</h1>
+        <p class="success-sub">
+            Дякуємо, <strong>{{ order.full_name }}</strong>!<br>
+            Ми зв'яжемось з вами за номером <strong>{{ order.phone }}</strong> для підтвердження доставки.
+        </p>
+        <div class="success-details">
+            <div class="summary-row">
+                <span>Email</span>
+                <span>{{ order.email }}</span>
+            </div>
+            <div class="summary-row">
+                <span>Адреса</span>
+                <span>{{ order.address }}</span>
+            </div>
+            <div class="summary-row summary-row--total">
+                <span>Сума замовлення</span>
+                <span><strong>{{ order.total_price }} грн</strong></span>
+            </div>
+        </div>
+        <div style="margin-top:2rem">
+            <a href="{% url 'product_list' %}" class="btn btn-primary">Продовжити покупки</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

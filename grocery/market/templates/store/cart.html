@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Кошик — EgorMarket{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>🛒 Кошик</h1>
+    </div>
+
+    {% if cart_items %}
+    <div class="cart-layout">
+        <div class="cart-items">
+            {% for item in cart_items %}
+            <div class="cart-row">
+                <div class="cart-row__icon">{{ item.product.category.icon }}</div>
+                <div class="cart-row__info">
+                    <div class="cart-row__name">{{ item.product.name }}</div>
+                    <div class="cart-row__price-unit">{{ item.product.price }} грн/{{ item.product.unit }}</div>
+                </div>
+                <div class="cart-row__qty">
+                    <form method="post" action="{% url 'cart_update' item.product.id %}" class="qty-form">
+                        {% csrf_token %}
+                        <button type="submit" name="qty" value="{{ item.qty|add:'-1' }}" class="qty-btn">−</button>
+                        <span class="qty-val">{{ item.qty }}</span>
+                        <button type="submit" name="qty" value="{{ item.qty|add:'1' }}" class="qty-btn">+</button>
+                    </form>
+                </div>
+                <div class="cart-row__subtotal">{{ item.subtotal }} грн</div>
+                <form method="post" action="{% url 'cart_remove' item.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-icon" title="Видалити">✕</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <h2 class="cart-summary__title">Підсумок</h2>
+            <div class="summary-row">
+                <span>Товарів</span>
+                <span>{{ cart_items|length }} поз.</span>
+            </div>
+            <div class="summary-row summary-row--total">
+                <span>Разом</span>
+                <span><strong>{{ total }} грн</strong></span>
+            </div>
+            <a href="{% url 'checkout' %}" class="btn btn-primary btn-block">Оформити замовлення →</a>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary btn-block" style="margin-top:8px">← Продовжити покупки</a>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="empty-state">
+        <p style="font-size:3rem; margin-bottom:1rem">🛒</p>
+        <p>Кошик порожній</p>
+        <a href="{% url 'product_list' %}" class="btn btn-primary" style="margin-top:1rem">Перейти до товарів</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+[
+  {"model": "store.category", "pk": 1, "fields": {"name": "Фрукти та овочі", "slug": "fruits-vegetables", "icon": "🥦"}},
+  {"model": "store.category", "pk": 2, "fields": {"name": "М'ясо та риба", "slug": "meat-fish", "icon": "🥩"}},
+  {"model": "store.category", "pk": 3, "fields": {"name": "Молочні продукти", "slug": "dairy", "icon": "🥛"}},
+  {"model": "store.category", "pk": 4, "fields": {"name": "Хліб та випічка", "slug": "bakery", "icon": "🍞"}},
+  {"model": "store.category", "pk": 5, "fields": {"name": "Напої", "slug": "drinks", "icon": "🧃"}},
+  {"model": "store.category", "pk": 6, "fields": {"name": "Бакалія", "slug": "grocery", "icon": "🫙"}},
+
+  {"model": "store.product", "pk": 1,  "fields": {"category": 1, "name": "Яблука Голден", "description": "Солодкі яблука вищого сорту, 1 кг", "price": "45.00", "unit": "кг", "is_available": true, "is_featured": true}},
+  {"model": "store.product", "pk": 2,  "fields": {"category": 1, "name": "Банани", "description": "Стиглі банани, 1 кг", "price": "39.00", "unit": "кг", "is_available": true, "is_featured": true}},
+  {"model": "store.product", "pk": 3,  "fields": {"category": 1, "name": "Помідори", "description": "Свіжі помідори, 1 кг", "price": "55.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 4,  "fields": {"category": 1, "name": "Огірки", "description": "Молоді огірки, 1 кг", "price": "42.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 5,  "fields": {"category": 1, "name": "Картопля", "description": "Молода картопля, 1 кг", "price": "28.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 6,  "fields": {"category": 1, "name": "Морква", "description": "Свіжа морква, 1 кг", "price": "22.00", "unit": "кг", "is_available": true, "is_featured": false}},
+
+  {"model": "store.product", "pk": 7,  "fields": {"category": 2, "name": "Куряче філе", "description": "Охолоджене куряче філе, 1 кг", "price": "175.00", "unit": "кг", "is_available": true, "is_featured": true}},
+  {"model": "store.product", "pk": 8,  "fields": {"category": 2, "name": "Свинина (шия)", "description": "Охолоджена свинина, 1 кг", "price": "220.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 9,  "fields": {"category": 2, "name": "Філе мінтаю", "description": "Заморожене філе мінтаю, 1 кг", "price": "135.00", "unit": "кг", "is_available": true, "is_featured": false}},
+
+  {"model": "store.product", "pk": 10, "fields": {"category": 3, "name": "Молоко 2.5%", "description": "Пастеризоване молоко, 1 л", "price": "38.00", "unit": "л", "is_available": true, "is_featured": true}},
+  {"model": "store.product", "pk": 11, "fields": {"category": 3, "name": "Сир кисломолочний", "description": "Зернистий сир 9%, 400 г", "price": "65.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 12, "fields": {"category": 3, "name": "Вершкове масло", "description": "Масло 82.5%, 200 г", "price": "72.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 13, "fields": {"category": 3, "name": "Йогурт натуральний", "description": "Натуральний йогурт без добавок, 500 г", "price": "49.00", "unit": "шт", "is_available": true, "is_featured": false}},
+
+  {"model": "store.product", "pk": 14, "fields": {"category": 4, "name": "Хліб пшеничний", "description": "Свіжий пшеничний хліб, 500 г", "price": "32.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 15, "fields": {"category": 4, "name": "Батон нарізний", "description": "М'який батон, 400 г", "price": "28.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 16, "fields": {"category": 4, "name": "Круасан", "description": "Свіжий масляний круасан", "price": "22.00", "unit": "шт", "is_available": true, "is_featured": true}},
+
+  {"model": "store.product", "pk": 17, "fields": {"category": 5, "name": "Вода мінеральна", "description": "Негазована мінеральна вода, 1.5 л", "price": "25.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 18, "fields": {"category": 5, "name": "Сік апельсиновий", "description": "100% сік, 1 л", "price": "68.00", "unit": "шт", "is_available": true, "is_featured": true}},
+  {"model": "store.product", "pk": 19, "fields": {"category": 5, "name": "Кола", "description": "Газований напій, 1.5 л", "price": "55.00", "unit": "шт", "is_available": true, "is_featured": false}},
+
+  {"model": "store.product", "pk": 20, "fields": {"category": 6, "name": "Гречка", "description": "Ядриця гречана, 1 кг", "price": "52.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 21, "fields": {"category": 6, "name": "Рис круглозернистий", "description": "Шліфований рис, 1 кг", "price": "48.00", "unit": "кг", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 22, "fields": {"category": 6, "name": "Макарони пера", "description": "Тверді сорти пшениці, 500 г", "price": "35.00", "unit": "шт", "is_available": true, "is_featured": false}},
+  {"model": "store.product", "pk": 23, "fields": {"category": 6, "name": "Олія соняшникова", "description": "Рафінована олія, 1 л", "price": "75.00", "unit": "шт", "is_available": true, "is_featured": false}}
+]

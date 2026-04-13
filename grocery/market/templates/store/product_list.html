@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}EgorMarket — Свіжі продукти{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-inner">
+        <h1 class="hero-title">Свіжі продукти<br>з доставкою додому</h1>
+        <p class="hero-sub">Великий вибір якісних товарів за вигідними цінами</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Категорії -->
+    <div class="section-header">
+        <h2>Категорії</h2>
+    </div>
+    <div class="categories-row">
+        <a href="{% url 'product_list' %}"
+           class="category-pill {% if not selected_category %}category-pill--active{% endif %}">
+            Всі товари
+        </a>
+        {% for cat in categories %}
+        <a href="{% url 'product_list' %}?category={{ cat.slug }}"
+           class="category-pill {% if selected_category.slug == cat.slug %}category-pill--active{% endif %}">
+            {{ cat.icon }} {{ cat.name }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Товари -->
+    <div class="section-header">
+        <h2>{% if selected_category %}{{ selected_category.icon }} {{ selected_category.name }}{% else %}Всі товари{% endif %}</h2>
+        <span class="section-count">{{ products|length }} товар(ів)</span>
+    </div>
+
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="product-card__img">
+                <span class="product-emoji">{{ product.category.icon }}</span>
+            </div>
+            <div class="product-card__body">
+                <span class="product-category-label">{{ product.category.name }}</span>
+                <h3 class="product-name">{{ product.name }}</h3>
+                {% if product.description %}
+                <p class="product-desc">{{ product.description }}</p>
+                {% endif %}
+            </div>
+            <div class="product-card__footer">
+                <div class="product-price">
+                    <span class="price-amount">{{ product.price }}</span>
+                    <span class="price-unit"> грн/{{ product.unit }}</span>
+                </div>
+                <button class="btn btn-primary btn-sm"
+                        data-id="{{ product.id }}"
+                        onclick="addToCart({{ product.id }})">
+                    + До кошика
+                </button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <p>Товари не знайдено.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
